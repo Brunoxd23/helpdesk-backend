@@ -14,6 +14,8 @@ import com.bruno.helpdesk.repositories.TecnicoRepository;
 import com.bruno.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.bruno.helpdesk.services.exceptions.ObjectNotFoundException;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TecnicoService {
 
@@ -39,6 +41,14 @@ public class TecnicoService {
 
 	}
 
+	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		objDTO.setId(id);
+		Tecnico oldObj = finById(id);
+		validaPorCpfEEmail(objDTO);
+		oldObj = new Tecnico(objDTO);
+		return repository.save(oldObj);
+	}
+
 	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
 
@@ -53,4 +63,3 @@ public class TecnicoService {
 	}
 
 }
-
