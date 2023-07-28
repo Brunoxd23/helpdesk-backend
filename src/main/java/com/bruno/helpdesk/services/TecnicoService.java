@@ -24,7 +24,7 @@ public class TecnicoService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 
-	public Tecnico finById(Integer id) {
+	public Tecnico findById(Integer id) {
 		Optional<Tecnico> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não Encontrado! Id: " + id));
 	}
@@ -43,10 +43,18 @@ public class TecnicoService {
 
 	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
 		objDTO.setId(id);
-		Tecnico oldObj = finById(id);
+		Tecnico oldObj = findById(id);
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Tecnico(objDTO);
 		return repository.save(oldObj);
+	}
+
+	public void delete(Integer id) {
+		Tecnico obj = findById(id);
+		if (obj.getChamados().size() > 0) {
+			throw new DataIntegrityViolationException("Técnico possui ondens de serviço e não pode ser deletado!");
+		}
+		repository.deleteById(id);
 	}
 
 	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
@@ -63,3 +71,4 @@ public class TecnicoService {
 	}
 
 }
+
