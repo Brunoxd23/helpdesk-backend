@@ -16,43 +16,43 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Chamado  implements Serializable {
+public class Chamado implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAbertura = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
-	
-	
+
 	private Prioridade prioridade;
 	private Status status;
-	private String tirulo;
+	private String titulo;
 	private String observacoes;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "tecnico_id")
 	private Tecnico tecnico;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-	
-	public Chamado() {
+
+	public Chamado(Object object, Prioridade media, Status andamento, String string, String string2, Tecnico tec3, Cliente cli2) {
 		super();
 	}
 
-	public Chamado(Integer id, Prioridade prioridade, Status status, String tirulo, String observacoes, Tecnico tecnico,
+	public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico,
 			Cliente cliente) {
-		super();
 		this.id = id;
 		this.prioridade = prioridade;
 		this.status = status;
-		this.tirulo = tirulo;
+		this.titulo = titulo;
 		this.observacoes = observacoes;
 		this.tecnico = tecnico;
 		this.cliente = cliente;
@@ -99,11 +99,11 @@ public class Chamado  implements Serializable {
 	}
 
 	public String getTirulo() {
-		return tirulo;
+		return titulo;
 	}
 
-	public void setTirulo(String tirulo) {
-		this.tirulo = tirulo;
+	public void setTirulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getObservacoes() {
@@ -130,6 +130,7 @@ public class Chamado  implements Serializable {
 		this.cliente = cliente;
 	}
 
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -146,7 +147,5 @@ public class Chamado  implements Serializable {
 		Chamado other = (Chamado) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
+
 }
