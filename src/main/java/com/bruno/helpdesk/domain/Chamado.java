@@ -19,8 +19,6 @@ import jakarta.persistence.ManyToOne;
 public class Chamado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -43,7 +41,8 @@ public class Chamado implements Serializable {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	public Chamado() {;
+	public Chamado() {
+		;
 	}
 
 	public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico,
@@ -128,7 +127,6 @@ public class Chamado implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
 
 	@Override
 	public int hashCode() {

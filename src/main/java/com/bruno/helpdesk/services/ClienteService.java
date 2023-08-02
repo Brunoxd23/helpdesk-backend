@@ -63,8 +63,6 @@ public class ClienteService {
 		if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
 			throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
 		}
-		
-		
 
 		obj = pessoaRepository.findByEmail(objDTO.getEmail());
 		if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
@@ -73,4 +71,3 @@ public class ClienteService {
 	}
 
 }
-
