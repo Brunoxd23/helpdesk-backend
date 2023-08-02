@@ -12,7 +12,7 @@ import com.bruno.helpdesk.domain.dtos.ClienteDTO;
 import com.bruno.helpdesk.repositories.ClienteRepository;
 import com.bruno.helpdesk.repositories.PessoaRepository;
 import com.bruno.helpdesk.services.exceptions.DataIntegrityViolationException;
-import com.bruno.helpdesk.services.exceptions.ObjectNotFoundException;
+import com.bruno.helpdesk.services.exceptions.ObjectnotFoundException;
 
 import jakarta.validation.Valid;
 
@@ -26,7 +26,7 @@ public class ClienteService {
 
 	public Cliente findById(Integer id) {
 		Optional<Cliente> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não Encontrado! Id: " + id));
+		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não Encontrado! Id: " + id));
 	}
 
 	public List<Cliente> findAll() {
