@@ -98,11 +98,11 @@ public class Chamado implements Serializable {
 		this.status = status;
 	}
 
-	public String getTirulo() {
+	public String getTitulo() {
 		return titulo;
 	}
 
-	public void setTirulo(String titulo) {
+	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 

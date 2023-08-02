@@ -44,7 +44,10 @@ public class DBService {
 		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro Chamado", tec1,
 				cli1);
 
-		Chamado c2 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 02", "Primeiro Chamado", tec3,
+		Chamado c2 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 02", "Segundo Chamado", tec2,
+				cli2);
+		
+		Chamado c3 = new Chamado(null, Prioridade.BAIXA, Status.ENCERRADO, "Chamado 03", "Terceiro Chamado", tec3,
 				cli2);
 
 		tecnicoRepository.saveAll(Arrays.asList(tec1));
@@ -56,6 +59,7 @@ public class DBService {
 
 		chamadoRepository.saveAll(Arrays.asList(c1));
 		chamadoRepository.saveAll(Arrays.asList(c2));
+		chamadoRepository.saveAll(Arrays.asList(c3));
 
 	}
 
