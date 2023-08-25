@@ -3,10 +3,10 @@ package com.bruno.helpdesk.domain.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.bruno.helpdesk.domain.Chamado;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import jakarta.validation.constraints.NotNull;
 
 public class ChamadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
